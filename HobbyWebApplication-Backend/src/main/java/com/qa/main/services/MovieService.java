@@ -28,5 +28,31 @@ public class MovieService {
 	public Movie getById(long id) {
 		return repo.findById(id).orElseThrow(MovieNotFoundException::new);
 	}
+	
+	public List<Movie> getByTitle(String title) {
+		return repo.findMovieByTitle(title);
+	}
+	
+	public List<Movie> getByYear(int year) {
+		return repo.findMovieByReleaseYear(year);
+	}
+	
+	public List<Movie> getByDirector(String director) {
+		return repo.findMovieByDirector(director);
+	}
+	
+	public Movie update(long id, Movie movie) {
+		Movie existing = repo.findById(id).get();
+		existing.setTitle(movie.getTitle());
+		existing.setReleaseYear(movie.getReleaseYear());
+		existing.setDirector(movie.getDirector());
+		
+		return repo.saveAndFlush(existing);
+	}
+	
+	public boolean delete(long id) {
+		repo.deleteById(id);
+		return !repo.existsById(id);
+	}
 
 }
