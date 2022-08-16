@@ -1,1 +1,1 @@
-INSERT INTO `movie`(`title`, `release_year`, `director`) VALUES ('ABC', 2000, 'John Smith');
+INSERT INTO `movie`(`title`, `release_year`, `director`) VALUES ('ABC', 2000, 'CBA');
