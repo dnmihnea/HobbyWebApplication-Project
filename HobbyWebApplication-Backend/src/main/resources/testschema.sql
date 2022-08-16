@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS `movie`;
+
+CREATE TABLE `movie` (
+	`id` BIGINT AUTO_INCREMENT,
+	`title` VARCHAR(255) NOT NULL,
+	`release_year` INT NOT NULL,
+	`director` VARCHAR(255) NOT NULL,
+	PRIMARY KEY(`id`)
+);
