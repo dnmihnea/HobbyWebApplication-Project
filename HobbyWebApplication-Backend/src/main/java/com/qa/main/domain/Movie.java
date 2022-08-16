@@ -99,11 +99,4 @@ public class Movie {
 		return Objects.equals(director, other.director) && id == other.id && releaseYear == other.releaseYear
 				&& Objects.equals(title, other.title);
 	}
-	
-	
-	
-	
-	
-	
-
 }
