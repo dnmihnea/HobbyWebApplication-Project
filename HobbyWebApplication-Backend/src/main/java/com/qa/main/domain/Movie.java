@@ -84,7 +84,7 @@ public class Movie {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(director, id, releaseYear, title);
+		return Objects.hash(id, title, releaseYear, director);
 	}
 
 	@Override
