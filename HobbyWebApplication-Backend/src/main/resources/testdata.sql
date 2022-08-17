@@ -1,1 +1,0 @@
-INSERT INTO `movie`(`title`, `release_year`, `director`) VALUES ('ABC', 2000, 'CBA');
