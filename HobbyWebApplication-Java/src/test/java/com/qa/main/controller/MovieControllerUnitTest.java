@@ -11,29 +11,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.main.domain.Movie;
+import com.qa.main.services.MovieService;
 
-@SpringBootTest
-@AutoConfigureMockMvc
-@Sql(scripts = {"classpath:testschema.sql", "classpath:testdata.sql"}, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
-@ActiveProfiles("test")
-public class MovieControllerIntegrationTest {
+@WebMvcTest
+public class MovieControllerUnitTest {
 	
-	@Autowired 
+	@Autowired
 	private MockMvc mvc;
 	
 	@Autowired
 	private ObjectMapper mapper;
+	
+	@MockBean
+	private MovieService service;
 	
 	@Test
 	public void createTest() throws Exception {
@@ -44,18 +43,22 @@ public class MovieControllerIntegrationTest {
 		Movie result = new Movie(2L, "XYZ", 2001, "ZYX");
 		String resultAsJSON = mapper.writeValueAsString(result);
 		
-		mvc.perform(post("/movie/create")
+		Mockito.when(service.create(entry)).thenReturn(result);
+		
+		mvc.perform(post("/movie/create")         
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(entryAsJSON))
 				.andExpect(content().json(resultAsJSON));
 	}
 	
 	@Test
-	public void getAllTest() throws Exception {
-		
+	public void getAllTest() throws Exception{
+
 		List<Movie> result = new ArrayList<>();
 		result.add(new Movie(1L, "ABC", 2000, "CBA"));
 		String resultAsJSON = mapper.writeValueAsString(result);
+		
+		Mockito.when(service.getAll()).thenReturn(result);
 		
 		mvc.perform(get("/movie/getAll")
 				.contentType(MediaType.APPLICATION_JSON))
@@ -67,6 +70,8 @@ public class MovieControllerIntegrationTest {
 		Movie result = new Movie(1L, "ABC", 2000, "CBA");
 		String resultAsJSON = mapper.writeValueAsString(result);
 		
+		Mockito.when(service.getById(result.getId())).thenReturn(result);
+		
 		mvc.perform(get("/movie/getById/1")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(content().json(resultAsJSON));
@@ -74,10 +79,12 @@ public class MovieControllerIntegrationTest {
 	
 	@Test
 	public void getByTitleTest() throws Exception{
+		
 		List<Movie> result = new ArrayList<>();
 		result.add(new Movie(1L, "ABC", 2000, "CBA"));
-		
 		String resultAsJSON = mapper.writeValueAsString(result);
+		
+		Mockito.when(service.getByTitle("ABC")).thenReturn(result);
 		
 		mvc.perform(get("/movie/getByTitle/ABC")
 				.contentType(MediaType.APPLICATION_JSON))
@@ -90,6 +97,8 @@ public class MovieControllerIntegrationTest {
 		result.add(new Movie(1L, "ABC", 2000, "CBA"));
 		String resultAsJSON = mapper.writeValueAsString(result);
 		
+		Mockito.when(service.getByYear(2000)).thenReturn(result);
+		
 		mvc.perform(get("/movie/getByYear/2000")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(content().json(resultAsJSON));
@@ -97,10 +106,12 @@ public class MovieControllerIntegrationTest {
 	
 	@Test
 	public void getByDirectorTest() throws Exception{
+		
 		List<Movie> result = new ArrayList<>();
 		result.add(new Movie(1L, "ABC", 2000, "CBA"));
-		
 		String resultAsJSON = mapper.writeValueAsString(result);
+		
+		Mockito.when(service.getByDirector("CBA")).thenReturn(result);
 		
 		mvc.perform(get("/movie/getByDirector/CBA")
 				.contentType(MediaType.APPLICATION_JSON))
@@ -109,14 +120,15 @@ public class MovieControllerIntegrationTest {
 	
 	@Test
 	public void updateTest() throws Exception{
-		
 		Movie update = new Movie("DEF", 2020, "FED");
 		String updateAsJSON = mapper.writeValueAsString(update);
-		
+				
 		Movie result = new Movie(1L, "DEF", 2020, "FED");
 		String resultAsJSON = mapper.writeValueAsString(result);
 		
-		mvc.perform(put("/movie/update/1")
+		Mockito.when(service.update(result.getId(), update)).thenReturn(result);
+				
+		mvc.perform(put("/movie/update/1")         
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(updateAsJSON))
 				.andExpect(content().json(resultAsJSON));
@@ -124,8 +136,12 @@ public class MovieControllerIntegrationTest {
 	
 	@Test
 	public void deleteTest() throws Exception{
+		
+		Mockito.when(service.delete(1L)).thenReturn(true);
+		
 		mvc.perform(delete("/movie/delete/1")
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNoContent());
 	}
+
 }

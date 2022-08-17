@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HobbyWebApplicationBackendApplication {
+public class HobbyWebApplicationJavaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HobbyWebApplicationBackendApplication.class, args);
+		SpringApplication.run(HobbyWebApplicationJavaApplication.class, args);
 	}
 
 }
