@@ -7,7 +7,7 @@ This project contain a simple Movie database, where a user can input a movie's t
 
 * Version Control System - [Git](https://git-scm.com/)
 * Agile Board - [Jira](https://www.atlassian.com/software/jira)
-* Database - [MySQL](https://www.mysql.com/) (for production), [H2](https://www.h2database.com/html/main.html) for testing
+* Database - [MySQL](https://www.mysql.com/) (for production), [H2](https://www.h2database.com/html/main.html) (for testing)
 * Back-end - [Java](https://www.java.com/en/) 
 * API Development - [Spring Boot](https://spring.io/projects/spring-boot)
 * Build Tool - [Maven](https://maven.apache.org/)
