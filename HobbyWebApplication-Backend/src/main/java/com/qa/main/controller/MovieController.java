@@ -22,7 +22,7 @@ import com.qa.main.services.MovieService;
 @RequestMapping("/movie")
 public class MovieController {
 	
-	private MovieService service;
+	private MovieService service; 
 	
 	public MovieController(MovieService service) {
 		this.service = service;

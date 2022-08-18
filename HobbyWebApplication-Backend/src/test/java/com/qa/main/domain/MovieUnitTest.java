@@ -1,18 +1,14 @@
 package com.qa.main.domain;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-
-
-
-
-
-
+@SpringBootTest
 public class MovieUnitTest {
 	
 	private final Movie m = new Movie(1L, "ABC", 2000, "CBA");
