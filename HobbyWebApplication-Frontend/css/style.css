@@ -1,46 +1,83 @@
+@import url(https://fonts.googleapis.com/css?family=Ubuntu);
 body {
-    background: rgb(221,220,238);
+    background: rgb(209,219,255);
+    background: radial-gradient(circle, rgba(209,219,255,1) 0%, rgb(140, 168, 202) 100%);
+    font-family: 'Ubuntu';
 }
 
 #navbar{
     background-color:#112D4E !important;
+    padding-left: 8em;
+    border-bottom-left-radius: 2%;
+    border-bottom-right-radius: 2%;
 }
 #form-div {
-    border: 2px solid black;
     display: inline-grid;
     width: 25%;
     margin-left: 2%;
     padding: 10px;
     margin-top:5%;
-    background-color:#112D4E !important;
+    background-color:rgb(17, 45, 78, 0.7) !important;
+    border-radius: 5px;
 }
 
 #results-div {
-    border: 2px solid black;
     display: inline-grid;
     width: 60%;
     margin-left: 2%;
-    background-color:#112D4E !important;
+    margin-top: 5.5em;
+    background-color:rgb(17, 45, 78, 0.8) !important;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-radius: 5px;
 }
 
 .entry-div {
-    border: solid;
+    border:solid;
+    border-color:#112D4E;
     border-width: 2px;
     border-radius: 5px;
     margin: auto;
     margin-top:4px;
-    margin-left: 17em;
-    width:50%;
+    margin-left: 9em;
+    width:60%;
+    padding-right: 4em;
+    padding-left: 4em;
+    padding-top: 3px;
+    padding-bottom: 3px;
     text-align:center;
     display: inline-grid;
     background-color:#3F72AF !important;
     color: #F9F7F7 !important;
-    
+    font-size: 120%;
 }
 
 .entry-btn {
-    background-color: #DBE2EF;
+    background: #ededed;
+    color: #000;
     margin-left: 5px;
+    appearance: none;
+    -webkit-appearance: none;
+  font-family: sans-serif;
+  cursor: pointer;
+  padding: 2px;
+  min-width: 75px;
+  border: 0px;
+    -webkit-transition: background-color 100ms linear;
+    -ms-transition: background-color 100ms linear;
+     transition: background-color 100ms linear;
+     border-radius: 8px;
+}
+
+#flexbox{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.entry-btn:hover {
+    background: #f8fddf;
+    color: #000;
 }
 
 #updateBtn {
@@ -53,4 +90,21 @@ body {
 
 #cancelBtn {
     display:none;
+}
+
+.form-check-label {
+    color: #fdfdfd;
+}
+
+.form-check-input {
+    cursor:pointer;
+}
+
+#searchInput {
+    margin-top: 3em;
+}
+
+#searchBtn{
+    display: flex;
+    margin-top: 7px;
 }
